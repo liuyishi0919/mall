@@ -36,7 +36,7 @@
       </ul>
 
     </div>
-    <v-shopcart></v-shopcart>
+    <v-shopcart :deliveryPrice="seller.deliveryPrice" :minPrice="seller.minPrice"></v-shopcart>
 
   </div>
 </template>
@@ -48,6 +48,11 @@
 
   export default {
     name: "goods",
+    props: {
+      seller: {
+        type: Object
+      }
+    },
     data() {
       return {
         goods: [],

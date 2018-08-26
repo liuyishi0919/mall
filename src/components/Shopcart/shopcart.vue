@@ -3,17 +3,17 @@
     <div class="content">
       <div class="content-left">
         <div class="logo-wrapper">
-          <div class="logo">
-            <i class="icon-shopping_cart"></i>
+          <div class="logo" :class="{'highlight': totalCount>0}">
+            <i class="icon-shopping_cart" :class="{'highlight': totalCount>0}"></i>
           </div>
           <div class="num">{{totalCount}}</div>
         </div>
         <div class="price">¥{{totalPrice}}元</div>
-        <div class="desc">配送费4元</div>
+        <div class="desc">另需配送费¥{{deliveryPrice}}元</div>
       </div>
       <div class="content-right">
-        <div class="pay">
-          ¥12元
+        <div class="pay" :class="payClass">
+          {{payDesc}}
         </div>
       </div>
     </div>
@@ -32,6 +32,14 @@
             {price: 10, count: 1}
           ]
         }
+      },
+      minPrice: {
+        type: Number,
+        default: 10
+      },
+      deliveryPrice: {
+        type: Number,
+        default: 4
       }
     },
 
@@ -49,7 +57,25 @@
           count += food.count;
         })
         return count;
+      },
+      payDesc() {
+        if (this.totalPrice === 0) {
+          return `¥${this.minPrice}元起送`;
+        } else if (this.totalPrice < this.minPrice) {
+          let diff = this.minPrice - this.totalPrice;
+          return `还差¥${diff}元起送`;
+        } else {
+          return '去结算';
+        }
+      },
+      payClass() {
+        if (this.totalPrice < this.minPrice) {
+          return 'not-enough';
+        } else {
+          return 'enough'
+        }
       }
+
     },
     methods: {}
 
@@ -87,10 +113,16 @@
             border-radius: 50%;
             text-align: center;
             background: #2b343c;
+            &.highlight {
+              background: rgb(0, 160, 220);
+            }
             .icon-shopping_cart {
               line-height: 88px;
               font-size: 48px;
               color: #80858a;
+              &.highlight {
+                color: #fff;
+              }
             }
           }
           .num {
@@ -140,8 +172,16 @@
           text-align: center;
           font-size: 24px;
           font-weight: 700;
-          background: #2b333b;
-          color: #919396;
+          &.not-enough {
+            color: #919396;
+            background: #2b333b;
+          }
+          &.enough {
+            color: #fff;
+            background: #00b43c;
+          }
+
+
         }
       }
     }

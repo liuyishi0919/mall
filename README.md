@@ -26,6 +26,4 @@ npm run build --report
 5. px2remLoader - change 'px' to 'rem'
 6. better-scroll - better-scroll is a plugin which is aimed at solving scrolling circumstances on the mobile side
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
-
 > tips: my Blog: http://www.cnblogs.com/liuyishi/ This is my study notes on front end and Java.
