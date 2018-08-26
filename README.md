@@ -1,6 +1,6 @@
 # mall
 
-> A Vue.js project
+> Use Vue.js imitation eleme project. 
 
 ## Build Setup
 
@@ -18,6 +18,14 @@ npm run build
 npm run build --report
 ```
 
+## Technology stack
+1. vuejs - The Progressive JavaScript Framework
+2. axios - Promise based HTTP client for the browser and node.js
+3. scss - Syntactically Awesome Style Sheets
+4. flexible - Alibaba Mobile adaptation scheme
+5. px2remLoader - change 'px' to 'rem'
+6. better-scroll - better-scroll is a plugin which is aimed at solving scrolling circumstances on the mobile side
+
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
 
-> tips: 我的博客: http://www.cnblogs.com/liuyishi/ 上面有我的关于前端和Java的学习笔记. 
+> tips: my Blog: http://www.cnblogs.com/liuyishi/ This is my study notes on front end and Java.
