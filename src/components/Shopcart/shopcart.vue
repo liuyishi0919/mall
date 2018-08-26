@@ -34,6 +34,7 @@
         }
       }
     },
+    
     computed: {
       totalPrice() {
         let total = 0;
