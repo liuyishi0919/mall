@@ -13,7 +13,7 @@
       </div>
       <div class="content-right">
         <div class="pay">
-          12元
+          ¥12元
         </div>
       </div>
     </div>
