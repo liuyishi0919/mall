@@ -1,6 +1,6 @@
 # mall
 
-> Use Vue.js imitation eleme project. 
+> Use Vue.js to imitate eleme project.
 
 ## Build Setup
 
@@ -23,7 +23,7 @@ npm run build --report
 2. axios - Promise based HTTP client for the browser and node.js
 3. scss - Syntactically Awesome Style Sheets
 4. flexible - Alibaba Mobile adaptation scheme
-5. px2remLoader - change 'px' to 'rem'
-6. better-scroll - better-scroll is a plugin which is aimed at solving scrolling circumstances on the mobile side
+5. px2remLoader - Change 'px' to 'rem'
+6. better-scroll - It's a plugin which is aimed at solving scrolling circumstances on the mobile side
 
-> tips: my Blog: http://www.cnblogs.com/liuyishi/ This is my study notes on front end and Java.
+> tips: my Blog: http://www.cnblogs.com/liuyishi/ this is my study notes on front end and Java.
