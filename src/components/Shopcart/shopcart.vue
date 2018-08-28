@@ -1,6 +1,6 @@
 <template>
   <div class="shopcart">
-    <div class="content">
+    <div class="content" @click="toggleList">
       <div class="content-left">
         <div class="logo-wrapper">
           <div class="logo" :class="{'highlight': totalCount>0}">
@@ -20,21 +20,44 @@
     <div class="ball-container">
       <div v-for="ball in balls">
         <transition name="drop" @before-enter="beforeDrop" @enter="dropping" @after-enter="afterDrop">
-          <div class="ball" v-show="ball.show" >
+          <div class="ball" v-show="ball.show">
             <div class="inner inner-hook"></div>
           </div>
         </transition>
       </div>
     </div>
-    <div class="shopcart-list">
-      
+    <transition name="fold">
+      <div class="shopcart-list" v-show="listShow">
+        <div class="list-header">
+          <h1 class="title">购物车</h1>
+          <span class="empty" @click="empty">清空</span>
+        </div>
+        <div class="list-content" ref="listContent">
+          <ul>
+            <li class="food" v-for="(food,index) in selectFoods" :key="index">
+              <span class="name">{{food.name}}</span>
+              <div class="price">
+                <span>¥{{food.price * food.count}}</span>
+              </div>
+              <div class="cartcontrol-wrapper">
+                <v-cart-control @add="addFood" :food="food"></v-cart-control>
+              </div>
+            </li>
+          </ul>
+        </div>
 
-    </div>
+
+      </div>
+    </transition>
+
 
   </div>
 </template>
 
 <script>
+  import Cartcontrol from '../CartControl/cartcontrol';
+  import BScroll from 'better-scroll';
+
   export default {
     name: "shopcart",
     props: {
@@ -64,7 +87,8 @@
           {show: false},
           {show: false},
         ],
-        dropBalls: []
+        dropBalls: [],
+        fold: true
       }
     },
     computed: {
@@ -98,9 +122,50 @@
         } else {
           return 'enough'
         }
-      }
+      },
+      listShow() {
+        if (!this.totalCount) {
+          this.fold = true;
+          return false;
+        }
+        let show = !this.fold;
+        if (show) {
+          this.$nextTick(() => {
+            if (!this.scroll) {
+              this.scroll = new BScroll(this.$refs.listContent, {
+                click: true
+              });
+            } else {
+              this.scroll.refresh();
+            }
+          });
+        }
+        return show;
+      },
     },
     methods: {
+
+      toggleList() {
+        if (!this.totalCount) {
+          return;
+        }
+        this.fold = !this.fold;
+      },
+
+      hideList() {
+        this.fold = true;
+      },
+
+      empty() {
+        this.selectFoods.forEach((food) => {
+          food.count = 0;
+        })
+      },
+
+
+      addFood(target) {
+        this.drop(target);
+      },
 
       drop(el) {
         for (let i = 0; i < this.balls.length; i++) {
@@ -150,11 +215,17 @@
           el.style.display = 'none';
         }
       }
+    },
+    components: {
+      VCartControl: Cartcontrol
     }
   }
 </script>
 
 <style lang="scss">
+
+  @import "../../common/scss/mixin";
+
   .shopcart {
     position: fixed;
     left: 0;
@@ -272,6 +343,69 @@
         }
       }
 
+    }
+    .shopcart-list {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      width: 100%;
+      transform: translate3d(0, -100%, 0);
+      &.fold-enter-active, &.fold-leave-active {
+        transition: all 0.4s linear;
+      }
+      &.fold-enter, &.fold-leave-to {
+        transform: translate3d(0, 0, 0);
+      }
+      .list-header {
+        height: 80px;
+        line-height: 80px;
+        padding: 0 36px;
+        background: #f3f5f7;
+        border-bottom: 1px solid #ddd;
+        .title {
+          float: left;
+          font-size: 24px;
+          color: rgb(7, 17, 27);
+        }
+        .empty {
+          float: right;
+          font-size: 24px;
+          color: rgb(0, 160, 220);
+        }
+      }
+      .list-content {
+        padding: 0 36px;
+        max-height: 434px;
+        overflow: hidden;
+        background: #fff;
+        .food {
+          position: relative;
+          padding: 12px 0;
+          box-sizing: border-box;
+          @include border-1px(rgba(7, 17, 27, 0.1));
+          .name {
+            line-height: 48px;
+            font-size: 24px;
+            color: rgb(7, 17, 27);
+          }
+          .price {
+            position: absolute;
+            right: 180px;;
+            bottom: 24px;
+            line-height: 48px;
+            font-size: 28px;
+            font-weight: 700;
+            color: rgb(240, 20, 20);
+          }
+          .cartcontrol-wrapper {
+            position: absolute;
+            right: 0;
+            bottom: 12px;
+          }
+
+        }
+      }
     }
 
   }
