@@ -26,6 +26,10 @@
         </transition>
       </div>
     </div>
+    <div class="shopcart-list">
+      
+
+    </div>
 
   </div>
 </template>
