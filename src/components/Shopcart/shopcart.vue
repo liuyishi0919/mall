@@ -23,6 +23,7 @@
           <div class="ball" v-show="ball.show">
             <div class="inner inner-hook"></div>
           </div>
+
         </transition>
       </div>
     </div>
