@@ -76,6 +76,48 @@
         }
       }
     }
+    &.star-36 {
+      .star-item {
+        display: inline-block;
+        width: 30px;
+        height: 30px;
+        margin-right: 12px;
+        background-size: 30px 30px;
+        &:last-child {
+          margin-right: 0
+        }
+        &.on {
+          @include bg-image('./icon/star36_on');
+        }
+        &.half {
+          @include bg-image('./icon/star36_half');
+        }
+        &.off {
+          @include bg-image('./icon/star36_off');
+        }
+      }
+    }
+    &.star-24 {
+      .star-item {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 12px;
+        background-size: 12px 12px;
+        &:last-child {
+          margin-right: 0
+        }
+        &.on {
+          @include bg-image('./icon/star24_on');
+        }
+        &.half {
+          @include bg-image('./icon/star24_half');
+        }
+        &.off {
+          @include bg-image('./icon/star24_off');
+        }
+      }
+    }
   }
 
 
