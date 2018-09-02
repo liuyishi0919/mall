@@ -26,7 +26,7 @@ exports.cssLoaders = function (options) {
   const px2remLoader = {
     loader: 'px2rem-loader',
     options: {
-      remUnit: 75  //1rem=多少像素 这里的设计稿是750px。
+      remUnit: 75  // 1rem=多少像素 这里的设计稿是750px。
     }
   }
 
@@ -37,18 +37,18 @@ exports.cssLoaders = function (options) {
     }
   }
 
-  // generate loader string to be used with extract text plugin
-  function generateLoaders(loader, loaderOptions) {
-    const loaders = options.usePostCSS ? [cssLoader, postcssLoader, px2remLoader] : [cssLoader, px2remLoader]
+    // generate loader string to be used with extract text plugin
+    function generateLoaders(loader, loaderOptions) {
+      const loaders = options.usePostCSS ? [cssLoader, postcssLoader, px2remLoader] : [cssLoader, px2remLoader]
 
-    if (loader) {
-      loaders.push({
-        loader: loader + '-loader',
-        options: Object.assign({}, loaderOptions, {
-          sourceMap: options.sourceMap
+      if (loader) {
+        loaders.push({
+          loader: loader + '-loader',
+          options: Object.assign({}, loaderOptions, {
+            sourceMap: options.sourceMap
+          })
         })
-      })
-    }
+      }
 
     // Extract CSS when that option is specified
     // (which is the case during production build)

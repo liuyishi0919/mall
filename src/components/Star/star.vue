@@ -102,8 +102,8 @@
         display: inline-block;
         width: 20px;
         height: 20px;
-        margin-right: 12px;
-        background-size: 12px 12px;
+        margin-right: 6px;
+        background-size: 20px 20px;
         &:last-child {
           margin-right: 0
         }
