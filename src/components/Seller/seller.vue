@@ -28,6 +28,10 @@
             </div>
           </li>
         </ul>
+        <div class="favorite" @click="toggleFavorite">
+          <span class="icon-favorite" :class="{'active': favorite}"></span>
+          <span class="text">{{favoriteText}}</span>
+        </div>
 
       </div>
       <v-split></v-split>
@@ -79,7 +83,9 @@
       }
     },
     data() {
-      return {}
+      return {
+        favorite: true,
+      }
     },
     created: function () {
       this.classMap = ['decrease', 'discount', 'special', 'invoice', 'guarantee'];
@@ -99,7 +105,15 @@
         });
       }
     },
+    computed: {
+      favoriteText() {
+        return this.favorite? '已收藏':'收藏';
+      }
+    },
     methods: {
+      toggleFavorite (){
+        this.favorite = !this.favorite;
+      },
       _initScorll() {
         if (!this.scorll) {
           this.scroll = new BScorll(this.$refs.seller, {
@@ -200,6 +214,28 @@
           }
         }
 
+      }
+      .favorite {
+        position: absolute;
+        width: 100px;
+        top: 18px;
+        right:22px;
+        text-align: center;
+        .icon-favorite {
+          display: block;
+          margin-bottom: 16px;
+          line-height: 48px;
+          font-size: 48px;
+          color: #d4d6d9;
+          &.active {
+            color: rgb(240, 20, 20);
+          }
+        }
+        .text {
+          line-height: 20px;
+          font-size: 20px;
+          color: rgb(77, 85, 93);
+        }
       }
     }
     .bulletin {

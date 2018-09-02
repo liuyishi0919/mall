@@ -35,13 +35,15 @@
         <v-split v-if="food.info"></v-split>
         <div class="rating">
           <h1 class="title">商品评价</h1>
-          <v-ratingselect  @select="selectRating" :ratings="food.ratings" :desc="desc" :selectType="selectType" :onlyContent="onlyContent" @toggle="toggleContent">
+          <v-ratingselect @select="selectRating" :ratings="food.ratings" :desc="desc" :selectType="selectType"
+                          :onlyContent="onlyContent" @toggle="toggleContent">
 
 
           </v-ratingselect>
           <div class="rating-wrapper">
             <ul v-show="food.ratings && food.ratings.length">
-              <li class="rating-item border-1px" v-for="rating in food.ratings" v-show="needShow(rating.rateType,rating.text)">
+              <li class="rating-item border-1px" v-for="rating in food.ratings"
+                  v-show="needShow(rating.rateType,rating.text)">
                 <div class="user">
                   <span class="name">{{rating.username}}</span>
                   <img class="avatar" :src="rating.avatar"/>
@@ -134,7 +136,7 @@
       },
       selectRating(type) {
         this.selectType = type;
-        this.$nextTick(()=>{
+        this.$nextTick(() => {
           this.scorll.refresh();
         })
 
@@ -142,7 +144,7 @@
       },
       toggleContent() {
         this.onlyContent = !this.onlyContent;
-        this.$nextTick(()=>{
+        this.$nextTick(() => {
           this.scorll.refresh();
         })
       }
