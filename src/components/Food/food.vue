@@ -113,11 +113,11 @@
         this.onlyContent = true;
         this.$nextTick(() => {
           if (!this.scroll) {
-            this.scorll = new BScorll(this.$refs.food, {
+            this.scroll = new BScorll(this.$refs.food, {
               click: true
             })
           } else {
-            this.scorll.refresh();
+            this.scroll.refresh();
           }
         })
       },
@@ -137,7 +137,7 @@
       selectRating(type) {
         this.selectType = type;
         this.$nextTick(() => {
-          this.scorll.refresh();
+          this.scroll.refresh();
         })
 
 
@@ -145,7 +145,7 @@
       toggleContent() {
         this.onlyContent = !this.onlyContent;
         this.$nextTick(() => {
-          this.scorll.refresh();
+          this.scroll.refresh();
         })
       }
     },

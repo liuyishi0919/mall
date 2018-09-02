@@ -89,7 +89,7 @@
       this.$axios.get('/mock/ratings').then((res) => {
         this.ratings = res.data.data;
         this.$nextTick(() => {
-          this.scorll = new BScorll(this.$refs.ratings, {
+          this.scroll = new BScorll(this.$refs.ratings, {
             click: true
           })
         })
@@ -108,22 +108,18 @@
           return type === this.selectType;
         }
       },
-
-
       toggleContent() {
         this.onlyContent = !this.onlyContent;
-        this.$nextTick(()=>{
-          this.scorll.refresh();
+        this.$nextTick(() => {
+          this.scroll.refresh();
         })
       },
       selectRating(type) {
         this.selectType = type;
         this.$nextTick(() => {
           this.scroll.refresh();
-        });
+        })
       }
-
-
     },
     filters: {
       formatDate(time) {
