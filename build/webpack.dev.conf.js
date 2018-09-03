@@ -14,7 +14,7 @@ const portfinder = require('portfinder')
 
 const express = require('express');
 const app = express();
-var appData = require('../data');
+const appData = require('../data');
 const seller = appData.seller;
 const goods = appData.goods;
 const ratings = appData.ratings;

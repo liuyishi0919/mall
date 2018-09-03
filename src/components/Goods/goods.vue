@@ -18,7 +18,7 @@
             <ul>
               <li v-for="food in item.foods" class="food-item border-1px" @click="selectFood(food, $event)">
                 <div class="icon">
-                  <img :src="food.icon">
+                  <img v-lazy="food.icon">
                 </div>
                 <div class="content">
                   <h2 class="name">{{food.name}}</h2>

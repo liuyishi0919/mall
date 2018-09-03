@@ -37,8 +37,6 @@
           <h1 class="title">商品评价</h1>
           <v-ratingselect @select="selectRating" :ratings="food.ratings" :desc="desc" :selectType="selectType"
                           :onlyContent="onlyContent" @toggle="toggleContent">
-
-
           </v-ratingselect>
           <div class="rating-wrapper">
             <ul v-show="food.ratings && food.ratings.length">
@@ -66,11 +64,11 @@
 </template>
 
 <script>
-  import CartControl from '../CartControl/cartcontrol'
+  import CartControl from 'components/CartControl/cartcontrol'
   import Vue from 'vue';
   import BScorll from 'better-scroll';
-  import Split from '../Split/split'
-  import Ratingselect from '../Ratingselect/ratingselect'
+  import Split from 'components/Split/split'
+  import Ratingselect from 'components/Ratingselect/ratingselect'
 
   const ALL = 2;
 

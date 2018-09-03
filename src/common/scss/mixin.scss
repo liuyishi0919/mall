@@ -1,3 +1,4 @@
+// 移动端实现真正1像素 border
 @mixin border-1px($color) {
   position: relative;
   &:after {
@@ -17,6 +18,7 @@
   }
 }
 
+// 通过媒体查询, 设备像素比是2的使用2x的png, 设备像素比是3的使用3x的png
 @mixin bg-image($url) {
   background-image: url($url + "@2x.png");
   @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {

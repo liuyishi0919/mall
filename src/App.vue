@@ -12,7 +12,10 @@
         <router-link to="/seller">卖家</router-link>
       </div>
     </div>
-    <router-view :seller="seller"></router-view>
+    <!--Vue 的内置组件，能在组件切换过程中将状态保留在内存中，防止重复渲染 DOM。-->
+    <keep-alive>
+      <router-view :seller="seller"></router-view>
+    </keep-alive>
   </div>
 </template>
 
@@ -30,6 +33,7 @@
       VHeader: VHeader
     },
     created: function () {
+      // 使用 $axios get请求获取 mock 数据
       this.$axios.get('/mock/seller').then((res) => {
         let seller = res.data.data;
         this.seller = seller;
@@ -42,22 +46,21 @@
   @import "./common/scss/mixin";
 
   .tab {
-    display: flex;
+    display: flex; // tab 使用flex布局
     width: 100%;
     height: 80px;
     line-height: 80px;
     border-bottom: 1px solid rgba(7, 17, 27, 0.1);
     .tab-item {
-      flex: 1;
+      flex: 1; // 每个标签项均分
       text-align: center;
       & > a {
         display: block;
         font-size: 24px;
         color: rgb(77, 85, 93);
-        &.active {
+        &.active { // 路由激活时的样式, 自定义类名在router/index.js 中 设置: linkActiveClass: 'active'
           color: rgb(240, 20, 20);
         }
-
       }
     }
 

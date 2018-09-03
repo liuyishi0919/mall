@@ -6,11 +6,15 @@ import router from './router'
 import axios from 'axios'
 import 'lib-flexible'
 import 'common/scss/index.scss'
+import VueLazyload from 'vue-lazyload'
 
 Vue.config.productionTip = false;
 
 // 将 axios 改写为 Vue 的原型属性
 Vue.prototype.$axios = axios;
+Vue.use(VueLazyload, {
+  loading: require('assets/default.png')
+});
 
 /* eslint-disable no-new */
 new Vue({

@@ -10,7 +10,7 @@
           <span class="name">{{seller.name}}</span>
         </div>
         <div class="description">
-          {{seller.description}} / {{seller.description}}分钟送达
+          {{seller.description}} / {{seller.deliveryTime}}分钟送达
         </div>
         <div class="support" v-if="seller.supports">
           <span class="icon" :class="classMap[seller.supports[0].type]"></span>
@@ -38,7 +38,7 @@
             </div>
             <v-line title="优惠信息"></v-line>
             <ul class="supports" v-if="seller.supports">
-              <li class="support-item" v-for="(item,index) in seller.supports">
+              <li class="support-item" v-for="item in seller.supports">
                 <span class="icon" :class="classMap[item.type]"></span>
                 <span class="text">{{item.description}}</span>
               </li>
@@ -67,7 +67,7 @@
   export default {
     name: "vheader",
     props: {
-      seller: {
+      seller: { // 接收父组件App.vue传过来的 seller 对象
         type: Object
       }
     },
@@ -96,6 +96,7 @@
 </script>
 
 <style lang="scss">
+
   @import "../../common/scss/mixin";
 
   .header {
@@ -106,8 +107,7 @@
     .content-wrapper {
       position: relative;
       padding: 48px 24px 36px 48px;
-
-      font-size: 0;
+      font-size: 0; // 让子元素的font-size为0, 是因为html的空格是占空间
       .avatar {
         display: inline-block;
         vertical-align: top;
@@ -132,10 +132,10 @@
             background-repeat: no-repeat;
           }
           .name {
-            font-size: 32px;
-            color: rgb(255, 255, 255);
             margin-left: 12px;
             line-height: 36px;
+            font-size: 32px;
+            color: rgb(255, 255, 255);
             font-weight: bold;
           }
         }
